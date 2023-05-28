@@ -1,7 +1,4 @@
-/**********
-Global Var
-***********/
-// Global
+
 var canvas, canvasContext;
 
 const WALL_DISTANCE_FROM_TOP = 30;
@@ -191,7 +188,7 @@ function addFeature(evt){
         random(playAreaX + 10, canvas.width - playAreaXo - 10),
         random(playAreaY, canvas.width/2 - 10),
         7+random(-3, 3),
-        7+random(-3,-3),
+        7+random(-3, 3),
         randomRGB(), 
         10+random(-3,3)
       );
@@ -216,22 +213,22 @@ function collisionDetect(){
   // collision detection of obstacles with balls
     for(const brick of bricksArray){
         for(const ball of ballsArray){
-            if(ball.x+ball.size >= brick.x && ball.x+ball.size <= brick.x+80 && ball.y+ball.size >= brick.y && ball.y+ball.size <= brick.y+WALL_THICKNESS){
-                if(ball.x+ball.size-ball.velX >= brick.x && ball.x+ball.size-ball.velX <= brick.x+80){
-                    ball.velY = -ball.velY
-                    flag = false;
-                }
-                else if(ball.y+ball.size-ball.velY >= brick.y && ball.y+ball.size-ball.velY <= brick.y+WALL_THICKNESS){
-                    ball.velX = -ball.velX;
-                    flag = false;
-                }
-                else{
-                    ball.velY = -ball.velY;
-                    ball.velX = -ball.velX;
-                }
-            }
-        }
+            if(ball.x+ball.size >= brick.x && ball.x-ball.size <= brick.x+80 && ball.y + ball.size >= brick.y && ball.y-ball.size <= brick.y+20){
+              if(ball.x+ball.size-ball.velX >= brick.x && ball.x-ball.size-ball.velX <= brick.x+80){
+                ball.velY = -ball.velY
+                flag = false;
+              }
+              else if(ball.y+ball.size-ball.velY >= brick.y && ball.y-ball.size-ball.velY <= brick.y+20){
+                  ball.velX = -ball.velX;
+                  flag = false;
+              }
+              else{
+                  ball.velY = -ball.velY;
+                  ball.velX = -ball.velX;
+              }
 
+            }        
+        }
     }
 }
 
